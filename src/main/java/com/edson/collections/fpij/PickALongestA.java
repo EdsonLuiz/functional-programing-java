@@ -15,5 +15,11 @@ public class PickALongestA {
       // min() to find tne shortest length
       // sort() to sort the length
       // average() to find the average of the length
+
+      /**
+       * this example can be considered a use of mapReduce pattern
+       * where the map() is the spreead operator and 
+       * the sum() is the reduce operation
+       */
   }
 }
