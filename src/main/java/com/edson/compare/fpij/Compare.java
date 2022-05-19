@@ -14,3 +14,22 @@ public class Compare {
       Person.prinatPeople("Sorted in ascending order by age", ascendingAge);
   }
 }
+
+class CompareV2 {
+  public static void main(String[] args) {
+    List<Person> ascendingAge = GenericRepository.getPeople().stream()
+      .sorted(Person::ageDifference)
+      .collect(Collectors.toList());
+
+    Person.prinatPeople("Sorted in ascending order by age", ascendingAge);
+  }
+}
+
+class ReusingAComparator {
+  public static void main(String[] args) {
+    Person.prinatPeople("Sorted in descending order by age: ", 
+      GenericRepository.getPeople().stream()
+        .sorted((person1, person2) -> person2.ageDifference(person1))
+        .collect(Collectors.toList()));
+  }
+}
