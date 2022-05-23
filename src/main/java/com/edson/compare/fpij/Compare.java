@@ -2,6 +2,7 @@ package com.edson.compare.fpij;
 
 import java.util.Comparator;
 import java.util.List;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 
 import com.edson.repo.GenericRepository;
@@ -79,5 +80,18 @@ class CompareV6 {
     people.stream()
       .max(Person::ageDifference)
       .ifPresent(eldest -> System.out.println("Eldest: " + eldest));
+  }
+}
+
+class FluentComparing {
+  public static void main(String[] args) {
+    final Function<Person, Integer> byAge = Person::getAge;
+    final Function<Person, String> byTheirName = Person::getName;
+
+    final List<Person> people = GenericRepository.getPeople();
+
+    Person.prinatPeople("Sorted in ascending order by age and name: ", people.stream().sorted(
+      Comparator.comparing(byAge).thenComparing(byTheirName)
+    ).collect(Collectors.toList()));
   }
 }
